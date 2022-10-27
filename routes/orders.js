@@ -2,7 +2,7 @@ const express = require("express");
 const Order = require("../models/order");
 const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
-
+const ObjectId = require("mongoose").Types.ObjectId;
 /**
  * Get all orders
  */
@@ -24,6 +24,22 @@ router.post("/create", async (req, res) => {
  * Start checkout session
  */
 router.post("/pay/:orderId", async (req, res) => {
+  if (!ObjectId.isValid(req.params.orderId)) {
+    return res.status(404).send("Order not found");
+  }
+
+  let order = await Order.findById(req.params.orderId);
+
+  // checking if order exists
+  if (!order) {
+    return res.status(404).send("Order not found");
+  }
+
+  // checking if order is paid
+  if (order.status === "paid") {
+    return res.status(400).send("Order paid already.");
+  }
+
   // Starting Stripe checkout session.
   try {
     const session = await stripe.checkout.sessions.create({

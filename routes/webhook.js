@@ -10,8 +10,8 @@ router.post(
   "/webhook",
   bodyParser.raw({ type: "application/json" }),
   async (request, response) => {
-    const payload = request.body;
-    const sig = request.headers["stripe-signature"];
+    let payload = request.body;
+    let sig = request.headers["stripe-signature"];
 
     let event;
 
@@ -22,7 +22,7 @@ router.post(
       return response.status(400).send(`Webhook Error: ${err.message}`);
     }
 
-    const session = event.data.object;
+    let session = event.data.object;
 
     if (event.type === "checkout.session.completed") {
       console.log("Payment session completed.");
