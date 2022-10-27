@@ -7,11 +7,11 @@ const endpointSecret = process.env.END_POINT_SECRET;
 
 router.post("/webhook", (request, response) => {
   const sig = request.headers['stripe-signature'];
-  console.log("sig= " + sig);
 
   try {
     event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
   } catch (err) {
+    console.log(err.message);
     return response.status(400).send(`Webhook Error: ${err.message}`);
   }
 
