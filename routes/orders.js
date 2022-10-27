@@ -56,8 +56,8 @@ router.post("/pay/:orderId", async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "https://example.com/success",
-      cancel_url: "https://example.com/cancel",
+      success_url: process.env.BASE_URL + '/payment-success',
+      cancel_url: process.env.BASE_URL + '/payment-cancel',
     });
 
     // Updating order status
