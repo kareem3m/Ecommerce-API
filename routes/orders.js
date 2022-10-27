@@ -25,7 +25,7 @@ router.post("/create", async (req, res) => {
  */
 router.post("/pay/:orderId", async (req, res) => {
   if (!ObjectId.isValid(req.params.orderId)) {
-    return res.status(404).send("Order not found");
+    return res.status(404).send("Invalid order ID");
   }
 
   let order = await Order.findById(req.params.orderId);
@@ -62,7 +62,7 @@ router.post("/pay/:orderId", async (req, res) => {
 
     // Updating order status
     await Order.updateOne(
-      { id: req.params.orderId },
+      { _id: req.params.orderId },
       { status: "paymentProcessing", paymentSessionId: session.id }
     );
 
