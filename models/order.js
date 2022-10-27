@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    unique: true,
-    required: true,
-  },
   status: {
     type: String,
     required: true,
+  },
+  paymentSessionId: {
+    type: String,
   },
 });
 
