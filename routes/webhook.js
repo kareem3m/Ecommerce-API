@@ -3,7 +3,7 @@ const router = express.Router();
 const stripe = require("stripe")(process.env.STRIP_API_KEY);
 const Order = require("../models/order")
 
-const endpointSecret = 'whsec_...';
+const endpointSecret = process.env.END_POINT_SECRET;
 
 router.post("/webhook", (request, response) => {
   const sig = request.headers['stripe-signature'];
