@@ -1,14 +1,32 @@
 const express = require("express");
+const order = require("../models/order");
 const Order = require("../models/order");
 const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const ObjectId = require("mongoose").Types.ObjectId;
 /**
- * Get all orders
+ * Pagination of orders
  */
-router.post("/", async (req, res) => {
-  const orders = await Order.find();
-  res.status(200).json(orders);
+router.get("/", async (req, res) => {
+  let limit = req.query.limit;
+  let after_id = req.query.after_id || ObjectId(0);
+  let status = req.query.status;
+  let orders;
+  if (status) {
+    orders = await Order.find({ status, _id: { $gt: after_id } }).limit(limit);
+  } else {
+    orders = await Order.find({ _id: { $gt: after_id } }).limit(limit);
+  }
+  if (limit && orders.length >= limit) {
+    let next = `${process.env.BASE_URL}/order/?limit=${limit}&after_id=${
+      orders[orders.length - 1].id
+    }`;
+    if (status) {
+      next += `&status=${status}`;
+    }
+    return res.status(200).json({ next, orders });
+  }
+  return res.status(200).json({ orders });
 });
 
 /**
