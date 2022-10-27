@@ -25,8 +25,10 @@ router.post(
     const session = event.data.object;
 
     if (event.type === "checkout.session.completed") {
+      console.log("Payment session completed.");
       Order.updateOne({ paymentSessionId: session.id }, { status: "paid" });
     } else {
+      console.log("Payment session completed.");
       Order.updateOne(
         { paymentSessionId: session.id },
         { status: "paymentFailed" }
