@@ -21,6 +21,36 @@ router.post("/create", async (req, res) => {
 });
 
 /**
+ * Deleted a pending order.
+ */
+router.post("/delete/:orderId", async (req, res) => {
+  try {
+    // Creating order in the database.
+    if (!ObjectId.isValid(req.params.orderId)) {
+      return res.status(404).send("Invalid order ID");
+    }
+
+    let order = await Order.findById(req.params.orderId);
+
+    // checking if order exists
+    if (!order) {
+      return res.status(404).send("Order not found");
+    }
+
+    if (order.status === "pending") {
+      await Order.deleteOne({ _id: order.id });
+      return res.status(201).send("Order deleted");
+    } else {
+      return res.status(400).send("Can't delete non-pending order");
+    }
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ message: "An error occurred", error: error.message });
+  }
+});
+
+/**
  * Start checkout session
  */
 router.post("/pay/:orderId", async (req, res) => {
