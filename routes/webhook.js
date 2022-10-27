@@ -28,14 +28,14 @@ router.post(
       console.log("Payment session completed.");
       Order.updateOne({ paymentSessionId: session.id }, { status: "paid" });
     } else {
-      console.log("Payment session completed.");
+      console.log("Payment session failed.");
       Order.updateOne(
         { paymentSessionId: session.id },
         { status: "paymentFailed" }
       );
     }
 
-    response.status(200);
+    response.status(200).send();
   }
 );
 

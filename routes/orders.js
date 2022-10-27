@@ -32,6 +32,7 @@ router.post("/create", async (req, res, next) => {
 
     // Updating order status
     order.status = "paymentProcessing";
+    order.paymentSessionId = session.id;
     await order.save();
 
     // Redirecting to Stripe checkout page
