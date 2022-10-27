@@ -8,15 +8,18 @@ const ObjectId = require("mongoose").Types.ObjectId;
  * Pagination of orders
  */
 router.get("/", async (req, res) => {
+  // Getting query parameters
   let limit = req.query.limit;
   let after_id = req.query.after_id || ObjectId(0);
   let status = req.query.status;
+  // Fetching orders from database
   let orders;
   if (status) {
     orders = await Order.find({ status, _id: { $gt: after_id } }).limit(limit);
   } else {
     orders = await Order.find({ _id: { $gt: after_id } }).limit(limit);
   }
+  // Calculating the next page url parameters
   if (limit && orders.length >= limit) {
     let next = `${process.env.BASE_URL}/order/?limit=${limit}&after_id=${
       orders[orders.length - 1].id
