@@ -10,10 +10,9 @@ const webhook = require("./routes/webhook")
 const app = express();
 
 app.use(logger("dev"));
+app.use(webhook)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.use(webhook)
 app.use('/user', usersRouter);
 app.use(verifyToken)
 app.use('/order', ordersRouter)
