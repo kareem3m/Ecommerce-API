@@ -4,12 +4,26 @@ const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
 /**
+ * Get all orders
+ */
+router.post("/", async (req, res) => {
+  const orders = await Order.find();
+  res.status(200).json(orders);
+});
+
+/**
  * Places a new order.
  */
-router.post("/create", async (req, res, next) => {
+router.post("/create", async (req, res) => {
   // Creating order in the database.
   const order = await Order.create({ status: "pending" });
+  res.status(201).json(order);
+});
 
+/**
+ * Start checkout session
+ */
+router.post("/pay/:orderId", async (req, res) => {
   // Starting Stripe checkout session.
   try {
     const session = await stripe.checkout.sessions.create({
@@ -31,9 +45,10 @@ router.post("/create", async (req, res, next) => {
     });
 
     // Updating order status
-    order.status = "paymentProcessing";
-    order.paymentSessionId = session.id;
-    await order.save();
+    await Order.updateOne(
+      { id: req.params.orderId },
+      { status: "paymentProcessing", paymentSessionId: session.id }
+    );
 
     // Redirecting to Stripe checkout page
     res.redirect(303, session.url);
