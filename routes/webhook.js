@@ -9,7 +9,7 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 router.post(
   "/webhook",
   bodyParser.raw({ type: "application/json" }),
-  (request, response) => {
+  async (request, response) => {
     const payload = request.body;
     const sig = request.headers["stripe-signature"];
 
@@ -26,10 +26,13 @@ router.post(
 
     if (event.type === "checkout.session.completed") {
       console.log("Payment session completed.");
-      Order.updateOne({ paymentSessionId: session.id }, { status: "paid" });
+      await Order.updateOne(
+        { paymentSessionId: session.id },
+        { status: "paid" }
+      );
     } else {
       console.log("Payment session failed.");
-      Order.updateOne(
+      await Order.updateOne(
         { paymentSessionId: session.id },
         { status: "paymentFailed" }
       );
