@@ -22,8 +22,11 @@ router.post("/signup", async (req, res) => {
     let existingUsername = await User.findOne({ username });
     let existingEmail = await User.findOne({ email });
 
-    if (existingEmail || existingUsername) {
+    if (existingUsername) {
       return res.status(409).send("User Already Exist. Please Login");
+    }
+    if (existingEmail) {
+      return res.status(409).send("Email Already Exist. Please Login");
     }
 
     // Encrypting user password
