@@ -2,8 +2,10 @@ require("dotenv").config();
 
 const express = require("express");
 const logger = require("morgan");
-const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const ordersRouter = require("./routes/orders");
+const verifyToken = require("./middleware/verifyToken");
+const webhook = require("./routes/webhook")
 
 const app = express();
 
@@ -11,8 +13,10 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use(webhook)
+app.use('/user', usersRouter);
+app.use(verifyToken)
+app.use('/order', ordersRouter)
 
 require("./config/database").connect();
 
