@@ -10,7 +10,7 @@ router.get("/payment-success", async (req, res) => {
 });
 
 router.get("/payment-cancel", async (req, res) => {
-    res.status(200).send("Payment canceled.");
-  });
+  res.status(200).send("Payment canceled.");
+});
 
 module.exports = router;

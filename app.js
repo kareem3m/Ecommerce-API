@@ -5,19 +5,19 @@ const logger = require("morgan");
 const usersRouter = require("./routes/users");
 const ordersRouter = require("./routes/orders");
 const verifyToken = require("./middleware/verifyToken");
-const webhook = require("./routes/webhook")
-const paymentResult = require('./routes/paymentResult')
+const webhook = require("./routes/webhook");
+const paymentResult = require("./routes/paymentResult");
 
 const app = express();
 
 app.use(logger("dev"));
-app.use(webhook)
-app.use(paymentResult)
+app.use(webhook);
+app.use(paymentResult);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/user', usersRouter);
-app.use(verifyToken)
-app.use('/order', ordersRouter)
+app.use("/user", usersRouter);
+app.use(verifyToken);
+app.use("/order", ordersRouter);
 
 require("./config/database").connect();
 
