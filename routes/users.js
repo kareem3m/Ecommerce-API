@@ -47,6 +47,9 @@ router.post("/signup", async (req, res) => {
     // Attaching the token to the user object
     user.token = token;
 
+    // Removing password from returned object
+    user = user.toObject();
+    delete user.password;
     // Returning the created user object
     res.status(201).json(user);
   } catch (err) {
@@ -82,6 +85,9 @@ router.post("/login", async (req, res) => {
       // Attaching the token to the user object
       user.token = token;
 
+      // Removing password from returned object
+      user = user.toObject();
+      delete user.password;
       // Returning the user object
       return res.status(200).json(user);
     } else {
