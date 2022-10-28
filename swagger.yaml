@@ -1,0 +1,316 @@
+openapi: 3.0.0
+info:
+  title: Ecommerce API
+  version: 1.0.0
+servers:
+  - url: https://nodogoro.herokuapp.com
+tags:
+  - name: Users
+  - name: Orders
+paths:
+  /user/signup:
+    post:
+      tags:
+        - Users
+      summary: Sign up
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: Vaas
+                email: 222@222.com
+                password: '123'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                username: Vaas
+                email: 222@222.com
+                _id: 635ac886d6149a93ee23af3e
+                __v: 0
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY4OTM5NTgsImV4cCI6MTY2NjkwMTE1OH0.B948Xe7e4a1g4cnl8AXaGDRpegJ1hxvz0K58xhryHHg
+        '409':
+          description: User already exists
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: User Already Exist. Please Login
+              
+  /user/login:
+    post:
+      tags:
+        - Users
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: Vaas
+                password: '123'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                _id: 635ac886d6149a93ee23af3e
+                username: Vaas
+                email: 222@222.com
+                __v: 0
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY4OTM5OTksImV4cCI6MTY2NjkwMTE5OX0.bxYpnjVj5bYKavpZqTD370ryN_SoI64AreIkrkOeOjs
+        '400':
+          description: Wrong username or password
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Invalid Credentials
+              
+  /user/update:
+    post:
+      tags:
+        - Users
+      summary: Update user info
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: 333@333.com
+      parameters:
+        - name: user-token
+          in: header
+          schema:
+            type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY5MzIyOTAsImV4cCI6MTY2NjkzOTQ5MH0.SwV586ymTqriNwQC4uv_151dF3xQgkPeD3iydqRbCuM
+      responses:
+        '201':
+          description: User info updated
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Update successful
+                
+  /order/create:
+    post:
+      tags:
+        - Orders
+      summary: Place order
+      parameters:
+        - name: user-token
+          in: header
+          schema:
+            type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY5MzIyOTAsImV4cCI6MTY2NjkzOTQ5MH0.SwV586ymTqriNwQC4uv_151dF3xQgkPeD3iydqRbCuM
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: pending
+                _id: 635ac909d6149a93ee23af45
+                __v: 0
+  /order/:
+    get:
+      tags:
+        - Orders
+      summary: Get orders
+      parameters:
+        - name: user-token
+          in: header
+          schema:
+            type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY5MzIyOTAsImV4cCI6MTY2NjkzOTQ5MH0.SwV586ymTqriNwQC4uv_151dF3xQgkPeD3iydqRbCuM
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: pending
+        - name: after_id
+          in: query
+          schema:
+            type: string
+          example: 635af81fce55a9c3c3f88fed
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Get orders
+                  value:
+                    orders:
+                      - _id: 635ac909d6149a93ee23af45
+                        status: paid
+                        __v: 0
+                        paymentSessionId: >-
+                          cs_test_a1ThwylkbG4uhpMcX3mYeWiy49qSjR0Aezrw8VDQx7MlJAdReL5neArYXy
+                example-1:
+                  summary: Get orders
+                  value:
+                    next: >-
+                      https://nodogoro.herokuapp.com/order/?limit=3&after_id=635af821ce55a9c3c3f88fef&status=pending
+                    orders:
+                      - _id: 635af81dce55a9c3c3f88fe8
+                        status: pending
+                        __v: 0
+                      - _id: 635af81fce55a9c3c3f88fed
+                        status: pending
+                        __v: 0
+                      - _id: 635af821ce55a9c3c3f88fef
+                        status: pending
+                        __v: 0
+                example-2:
+                  summary: Get orders
+                  value:
+                    next: >-
+                      https://nodogoro.herokuapp.com/order/?limit=3&after_id=635af824ce55a9c3c3f88ff5&status=pending
+                    orders:
+                      - _id: 635af822ce55a9c3c3f88ff1
+                        status: pending
+                        __v: 0
+                      - _id: 635af823ce55a9c3c3f88ff3
+                        status: pending
+                        __v: 0
+                      - _id: 635af824ce55a9c3c3f88ff5
+                        status: pending
+                        __v: 0
+                example-3:
+                  summary: Get orders
+                  value:
+                    orders:
+                      - _id: 635ac909d6149a93ee23af45
+                        status: paid
+                        __v: 0
+                        paymentSessionId: >-
+                          cs_test_a1ThwylkbG4uhpMcX3mYeWiy49qSjR0Aezrw8VDQx7MlJAdReL5neArYXy
+                      - _id: 635af81dce55a9c3c3f88fe8
+                        status: pending
+                        __v: 0
+                      - _id: 635af81fce55a9c3c3f88fed
+                        status: pending
+                        __v: 0
+                      - _id: 635af822ce55a9c3c3f88ff1
+                        status: pending
+                        __v: 0
+                      - _id: 635af823ce55a9c3c3f88ff3
+                        status: pending
+                        __v: 0
+                      - _id: 635af824ce55a9c3c3f88ff5
+                        status: pending
+                        __v: 0
+                      - _id: 635af825ce55a9c3c3f88ff7
+                        status: pending
+                        __v: 0
+                      - _id: 635af827ce55a9c3c3f88ff9
+                        status: pending
+                        __v: 0
+                      - _id: 635af828ce55a9c3c3f88ffb
+                        status: pending
+                        __v: 0
+                      - _id: 635af829ce55a9c3c3f88ffd
+                        status: pending
+                        __v: 0
+                      - _id: 635af82dce55a9c3c3f88fff
+                        status: pending
+                        __v: 0
+                      - _id: 635af82fce55a9c3c3f89001
+                        status: pending
+                        __v: 0
+                      - _id: 635af831ce55a9c3c3f89003
+                        status: pending
+                        __v: 0
+  /order/pay/{orderId}:
+    post:
+      tags:
+        - Orders
+      summary: Pay order
+      parameters:
+        - name: user-token
+          in: header
+          schema:
+            type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY5MzIyOTAsImV4cCI6MTY2NjkzOTQ5MH0.SwV586ymTqriNwQC4uv_151dF3xQgkPeD3iydqRbCuM
+        - name: orderId
+          in: path
+          schema:
+            type: string
+          example: '635ac909d6149a933e23af45'
+          required: true
+      responses:
+        '303':
+          description: Redirecting to payment checkout page
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: >-
+                See Other. Redirecting to
+                https://checkout.stripe.com/c/pay/cs_test_a1ThwylkbG4uhpMcX3mYeWiy49qSjR0Aezrw8VDQx7MlJAdReL5neArYXy#fidkdWxOYHwnPyd1blpxYHZxWjA0SX1CTUpCNFRXZGtHPFZoYHxEPU5hcj1WckloUT12XWY2PG5CYE1fSTcyND1wcUBqVXxCPWo2NHxRf2Ftdz1yN2ZJTkpcNEt8VTY0UWludGM1SXM3ZDU3NTVdbzNKUHBTUCcpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl
+        '400':
+          description: Order paid already
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Order paid already.
+              
+  /order/delete/{orderId}:
+    post:
+      tags:
+        - Orders
+      summary: Delete order
+      parameters:
+        - name: user-token
+          in: header
+          schema:
+            type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY5MzIyOTAsImV4cCI6MTY2NjkzOTQ5MH0.SwV586ymTqriNwQC4uv_151dF3xQgkPeD3iydqRbCuM
+        - name: orderId
+          required: true
+          in: path
+          schema:
+            type: string
+          example: '635ac909d6149a933e23af45'
+      responses:
+        '201':
+          description: Order deleted
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Order deleted
+        '400':
+          description: Couldn't delete order
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Can't delete non-pending order

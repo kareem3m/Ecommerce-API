@@ -1,0 +1,1301 @@
+{
+	"info": {
+		"_postman_id": "9711211c-d416-4a6e-afb5-0978f306cfac",
+		"name": "Ecommerce API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15823596"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Vaas\",\r\n    \"email\": \"222@222.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Sign up",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Vaas\",\r\n    \"email\": \"222@222.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/signup",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "245"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"f5-KeppzEs5vi8zCsOkJFTo/wl66Rk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 18:05:58 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"Vaas\",\n    \"email\": \"222@222.com\",\n    \"_id\": \"635ac886d6149a93ee23af3e\",\n    \"__v\": 0,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY4OTM5NTgsImV4cCI6MTY2NjkwMTE1OH0.B948Xe7e4a1g4cnl8AXaGDRpegJ1hxvz0K58xhryHHg\"\n}"
+						},
+						{
+							"name": "Sign up with exisiting username",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Vaas\",\r\n    \"email\": \"222@222.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/signup",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										"signup"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"20-ev44IWx6moGfzHpDkL/+NWHC0rQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 18:06:26 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "User Already Exist. Please Login"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Vaas\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"Vaas\",\r\n    \"password\":\"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "245"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"f5-Xq9YcGZCwN8j76yV4EPXnof+QmE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 18:06:39 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"635ac886d6149a93ee23af3e\",\n    \"username\": \"Vaas\",\n    \"email\": \"222@222.com\",\n    \"__v\": 0,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlZhYXMiLCJpYXQiOjE2NjY4OTM5OTksImV4cCI6MTY2NjkwMTE5OX0.bxYpnjVj5bYKavpZqTD370ryN_SoI64AreIkrkOeOjs\"\n}"
+						},
+						{
+							"name": "Login with wrong password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"Vaas\",\r\n    \"password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "19"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"13-PuuzgyfNi7tFpjLCikL1IIo5lik\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 18:07:26 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "Invalid Credentials"
+						}
+					]
+				},
+				{
+					"name": "Update user info",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-token",
+								"value": "{{user-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"333@333.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user info",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"333@333.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/update",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										"update"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"1f-zJLa11+KUAqWcoNLhabU5bc1wYM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 18:07:53 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Update successful\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Place order",
+					"protocolProfileBehavior": {
+						"followRedirects": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-token",
+								"value": "{{user-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/order/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"order",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Place order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/order/create",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"3d-GFCXfssbzNq1tuHS+5YjnQGYXE4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 18:08:09 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"pending\",\n    \"_id\": \"635ac909d6149a93ee23af45\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Get orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-token",
+								"value": "{{user-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order/?limit=5&status=pending&after_id=635af81fce55a9c3c3f88fed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "status",
+									"value": "pending"
+								},
+								{
+									"key": "after_id",
+									"value": "635af81fce55a9c3c3f88fed"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/order/?status=paid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										""
+									],
+									"query": [
+										{
+											"key": "after_id",
+											"value": "635ac909d6149a93ee23af45",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "paid"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"9f-VclU/xWoa/UHY4bh+cH+eZj5Nr4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 23:54:30 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orders\": [\n        {\n            \"_id\": \"635ac909d6149a93ee23af45\",\n            \"status\": \"paid\",\n            \"__v\": 0,\n            \"paymentSessionId\": \"cs_test_a1ThwylkbG4uhpMcX3mYeWiy49qSjR0Aezrw8VDQx7MlJAdReL5neArYXy\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/order/?status=pending&limit=3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										""
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "pending"
+										},
+										{
+											"key": "after_id",
+											"value": "635ac909d6149a93ee23af45",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"12e-f3F0nbH2/FPC0EYQ1JAuYbUUdEQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 23:55:44 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"next\": \"https://nodogoro.herokuapp.com/order/?limit=3&after_id=635af821ce55a9c3c3f88fef&status=pending\",\n    \"orders\": [\n        {\n            \"_id\": \"635af81dce55a9c3c3f88fe8\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af81fce55a9c3c3f88fed\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af821ce55a9c3c3f88fef\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/order/?status=pending&limit=3&after_id=635af821ce55a9c3c3f88fef",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										""
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "pending"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										},
+										{
+											"key": "after_id",
+											"value": "635ac909d6149a93ee23af45",
+											"disabled": true
+										},
+										{
+											"key": "after_id",
+											"value": "635af821ce55a9c3c3f88fef"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "302"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"12e-jPYPMdAKIOKPJb0d8M/r0YNtJQc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 23:56:27 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"next\": \"https://nodogoro.herokuapp.com/order/?limit=3&after_id=635af824ce55a9c3c3f88ff5&status=pending\",\n    \"orders\": [\n        {\n            \"_id\": \"635af822ce55a9c3c3f88ff1\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af823ce55a9c3c3f88ff3\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af824ce55a9c3c3f88ff5\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/order/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										""
+									],
+									"query": [
+										{
+											"key": "after_id",
+											"value": "635ac909d6149a93ee23af45",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "903"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"387-fXp9x4YrjEVF95UamUsprH24ljE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 23:57:41 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orders\": [\n        {\n            \"_id\": \"635ac909d6149a93ee23af45\",\n            \"status\": \"paid\",\n            \"__v\": 0,\n            \"paymentSessionId\": \"cs_test_a1ThwylkbG4uhpMcX3mYeWiy49qSjR0Aezrw8VDQx7MlJAdReL5neArYXy\"\n        },\n        {\n            \"_id\": \"635af81dce55a9c3c3f88fe8\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af81fce55a9c3c3f88fed\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af822ce55a9c3c3f88ff1\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af823ce55a9c3c3f88ff3\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af824ce55a9c3c3f88ff5\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af825ce55a9c3c3f88ff7\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af827ce55a9c3c3f88ff9\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af828ce55a9c3c3f88ffb\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af829ce55a9c3c3f88ffd\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af82dce55a9c3c3f88fff\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af82fce55a9c3c3f89001\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"635af831ce55a9c3c3f89003\",\n            \"status\": \"pending\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Pay order",
+					"protocolProfileBehavior": {
+						"followRedirects": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-token",
+								"value": "{{user-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/order/pay/635aef2c3eb50ebf34297e4d",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"order",
+								"pay",
+								"635aef2c3eb50ebf34297e4d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Pay order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/order/pay/635ac909d6149a93ee23af45",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										"pay",
+										"635ac909d6149a93ee23af45"
+									]
+								}
+							},
+							"status": "See Other",
+							"code": 303,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Location",
+									"value": "https://checkout.stripe.com/c/pay/cs_test_a1ThwylkbG4uhpMcX3mYeWiy49qSjR0Aezrw8VDQx7MlJAdReL5neArYXy#fidkdWxOYHwnPyd1blpxYHZxWjA0SX1CTUpCNFRXZGtHPFZoYHxEPU5hcj1WckloUT12XWY2PG5CYE1fSTcyND1wcUBqVXxCPWo2NHxRf2Ftdz1yN2ZJTkpcNEt8VTY0UWludGM1SXM3ZDU3NTVdbzNKUHBTUCcpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "385"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 18:09:09 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "See Other. Redirecting to https://checkout.stripe.com/c/pay/cs_test_a1ThwylkbG4uhpMcX3mYeWiy49qSjR0Aezrw8VDQx7MlJAdReL5neArYXy#fidkdWxOYHwnPyd1blpxYHZxWjA0SX1CTUpCNFRXZGtHPFZoYHxEPU5hcj1WckloUT12XWY2PG5CYE1fSTcyND1wcUBqVXxCPWo2NHxRf2Ftdz1yN2ZJTkpcNEt8VTY0UWludGM1SXM3ZDU3NTVdbzNKUHBTUCcpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl"
+						},
+						{
+							"name": "Pay order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/order/pay/635ac909d6149a93ee23af45",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										"pay",
+										"635ac909d6149a93ee23af45"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "19"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"13-nc/7mYYbCzILLEoWiLDpvEO6+NE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 28 Oct 2022 04:45:10 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "Order paid already."
+						}
+					]
+				},
+				{
+					"name": "Delete order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-token",
+								"value": "{{user-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/order/delete/635aef4d3eb50ebf34297e50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"delete",
+								"635aef4d3eb50ebf34297e50"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/order/delete/635af821ce55a9c3c3f88fef",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										"delete",
+										"635af821ce55a9c3c3f88fef"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d-svYxYvt9IiQMz1+GFoiuqoVzJ98\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 23:56:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Order deleted"
+						},
+						{
+							"name": "Delete order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-token",
+										"value": "{{user-token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/order/delete/635ac909d6149a93ee23af45",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"order",
+										"delete",
+										"635ac909d6149a93ee23af45"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-P7GtspzrLuALAkomqec8VeYDpdY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 23:57:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Can't delete non-pending order"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		},
+		{
+			"key": "user-token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
